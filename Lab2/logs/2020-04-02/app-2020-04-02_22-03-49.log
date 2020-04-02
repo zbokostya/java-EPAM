@@ -1,0 +1,3 @@
+2020-04-02 22:03:49 [main] INFO  by.epam.library.util.Main - TEST
+2020-04-02 22:03:49 [main] INFO  by.epam.library.dao.DAO - 1 objects saved
+2020-04-02 22:03:49 [main] INFO  by.epam.library.dao.DAO - 1 objects readed

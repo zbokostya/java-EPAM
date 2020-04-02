@@ -1,0 +1,3 @@
+2020-04-02 22:20:14 [main] INFO  by.epam.library.util.Main - TEST
+2020-04-02 22:20:14 [main] INFO  by.epam.library.dao.DAO - Object added successfully.
+2020-04-02 22:20:14 [main] INFO  by.epam.library.dao.DAO - Object removed successfully.

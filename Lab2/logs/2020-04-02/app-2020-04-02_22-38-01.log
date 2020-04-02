@@ -1,0 +1,5 @@
+2020-04-02 22:38:01 [main] INFO  by.epam.library.util.Main - TEST
+2020-04-02 22:38:01 [main] INFO  by.epam.library.dao.DAO - Object added successfully.
+2020-04-02 22:38:01 [main] WARN  by.epam.library.dao.DAO - Cannot remove object.
+2020-04-02 22:38:01 [main] INFO  by.epam.library.dao.DAO - 1 objects recorded.
+2020-04-02 22:38:01 [main] INFO  by.epam.library.dao.DAO - 1 objects read.
