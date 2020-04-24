@@ -4,8 +4,21 @@ import java.util.Objects;
 
 public class Ticket {
     private Flight flight;
-    private double cost;
+    private Plane plane;
+    private int seat;
+    private int cost;
     private int id;
+
+    public Ticket() {
+    }
+
+    public Ticket(Flight flight, Plane plane, int seat, int cost, int id) {
+        this.flight = flight;
+        this.plane = plane;
+        this.seat = seat;
+        this.cost = cost;
+        this.id = id;
+    }
 
     public Flight getFlight() {
         return flight;
@@ -15,11 +28,27 @@ public class Ticket {
         this.flight = flight;
     }
 
-    public double getCost() {
+    public Plane getPlane() {
+        return plane;
+    }
+
+    public void setPlane(Plane plane) {
+        this.plane = plane;
+    }
+
+    public int getSeat() {
+        return seat;
+    }
+
+    public void setSeat(int seat) {
+        this.seat = seat;
+    }
+
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 
@@ -32,27 +61,31 @@ public class Ticket {
     }
 
     @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Ticket{");
-        sb.append("flight=").append(flight);
-        sb.append(", cost=").append(cost);
-        sb.append(", id=").append(id);
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return Double.compare(ticket.cost, cost) == 0 &&
+        return seat == ticket.seat &&
+                Double.compare(ticket.cost, cost) == 0 &&
                 id == ticket.id &&
-                Objects.equals(flight, ticket.flight);
+                Objects.equals(flight, ticket.flight) &&
+                Objects.equals(plane, ticket.plane);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flight, cost, id);
+        return Objects.hash(flight, plane, seat, cost, id);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Ticket{");
+        sb.append("flight=").append(flight);
+        sb.append(", plane=").append(plane);
+        sb.append(", seat=").append(seat);
+        sb.append(", cost=").append(cost);
+        sb.append(", id=").append(id);
+        sb.append('}');
+        return sb.toString();
     }
 }

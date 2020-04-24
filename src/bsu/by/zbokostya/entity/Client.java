@@ -4,42 +4,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Client extends User {
-    private String name;
-    private int flownHours;
-    private double discount;
-    private ArrayList<Ticket> tickets;
     private int id;
+    private String name;
+    private ArrayList<Ticket> tickets;
+    private String passwordHash;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Client(int id, String name, ArrayList<Ticket> tickets, String passwordHash) {
+        this.id = id;
         this.name = name;
-    }
-
-    public int getFlownHours() {
-        return flownHours;
-    }
-
-    public void setFlownHours(int flownHours) {
-        this.flownHours = flownHours;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
-    }
-
-    public ArrayList<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
+        this.passwordHash = passwordHash;
     }
 
     public int getId() {
@@ -50,32 +24,58 @@ public class Client extends User {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Client{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", flownHours=").append(flownHours);
-        sb.append(", discount=").append(discount);
-        sb.append(", tickets=").append(tickets);
-        sb.append(", id=").append(id);
-        sb.append('}');
-        return sb.toString();
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(ArrayList<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Client client = (Client) o;
-        return flownHours == client.flownHours &&
-                Double.compare(client.discount, discount) == 0 &&
-                id == client.id &&
+        return id == client.id &&
                 Objects.equals(name, client.name) &&
-                Objects.equals(tickets, client.tickets);
+                Objects.equals(tickets, client.tickets) &&
+                Objects.equals(passwordHash, client.passwordHash);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, flownHours, discount, tickets, id);
+        return Objects.hash(super.hashCode(), id, name, tickets, passwordHash);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Client{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", tickets=").append(tickets);
+        sb.append(", passwordHash='").append(passwordHash).append('\'');
+        sb.append(", login='").append(login).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", nickname='").append(nickname).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

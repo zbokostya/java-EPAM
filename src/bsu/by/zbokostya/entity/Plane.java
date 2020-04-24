@@ -3,14 +3,29 @@ package bsu.by.zbokostya.entity;
 import java.io.*;
 import java.util.Objects;
 
-public class Plane implements Serializable {
+public class Plane {
+    private int id;
     private String name;
     private int seats;
-    private int id;
+    private String serialNumber;
+    private int companyId;
 
-    public Plane(String name, int seats, int id){
+    public Plane() {
+    }
+
+    public Plane(int id, String name, int seats, String serialNumber, int companyId) {
+        this.id = id;
         this.name = name;
         this.seats = seats;
+        this.serialNumber = serialNumber;
+        this.companyId = companyId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -30,22 +45,20 @@ public class Plane implements Serializable {
         this.seats = seats;
     }
 
-    public int getId() {
-        return id;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Plane{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", seats=").append(seats);
-        sb.append(", id=").append(id);
-        sb.append('}');
-        return sb.toString();
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     @Override
@@ -53,13 +66,27 @@ public class Plane implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Plane plane = (Plane) o;
-        return seats == plane.seats &&
-                id == plane.id &&
-                Objects.equals(name, plane.name);
+        return id == plane.id &&
+                seats == plane.seats &&
+                companyId == plane.companyId &&
+                Objects.equals(name, plane.name) &&
+                Objects.equals(serialNumber, plane.serialNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, seats, id);
+        return Objects.hash(id, name, seats, serialNumber, companyId);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Plane{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", seats=").append(seats);
+        sb.append(", serialNumber='").append(serialNumber).append('\'');
+        sb.append(", companyId=").append(companyId);
+        sb.append('}');
+        return sb.toString();
     }
 }

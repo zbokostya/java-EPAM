@@ -1,0 +1,11 @@
+2020 -04-24  12:43:12  [main] INFO  bsu.by.zbokostya.Main - 123
+2020 -04-24  13:36:40  [main] INFO  bsu.by.zbokostya.Main - 123
+2020 -04-24  20:33:20  [main] ERROR bsu.by.zbokostya.DAO.Dao - Connection Failed! Check output console
+2020 -04-24  20:36:46  [main] ERROR bsu.by.zbokostya.DAO.Dao - Connection Failed! Check output console
+2020 -04-24  20:38:38  [main] ERROR bsu.by.zbokostya.DAO.Dao - Connection Failed! Check output console
+2020 -04-24  20:41:52  [main] ERROR bsu.by.zbokostya.DAO.Dao - Connection Failed! Check output console
+2020 -04-24  20:42:53  [main] ERROR bsu.by.zbokostya.DAO.Dao - ERROR: relation "route" does not exist
+  Позиция: 13
+2020 -04-24  20:42:53  [main] ERROR bsu.by.zbokostya.service.Service - such route does not exist
+2020 -04-24  20:44:37  [main] ERROR bsu.by.zbokostya.DAO.Dao - ERROR: relation "route" does not exist
+  Позиция: 13
