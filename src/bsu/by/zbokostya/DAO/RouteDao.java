@@ -11,7 +11,7 @@ public class RouteDao extends Dao<Route> {
         setTableName("route");
         setInsertSql("INSERT INTO route " +
                 "(city_out, city_in)" +
-                "VALUES(?,?)");
+                "VALUES(?,?)" + " RETURNING id");
         setDeleteSql("DELETE FROM route WHERE route_id = ");
     }
 
@@ -40,9 +40,9 @@ public class RouteDao extends Dao<Route> {
     public Route makeEntity(ResultSet sqlResponse) {
         Route route = new Route();
         try {
-            route.setId(sqlResponse.getInt("route_id"));
-            route.setCityOut(sqlResponse.getString("plane_city_out").trim());
-            route.setCityIn(sqlResponse.getString("plane_city_in").trim());
+            route.setId(sqlResponse.getInt("id"));
+            route.setCityOut(sqlResponse.getString("city_out").trim());
+            route.setCityIn(sqlResponse.getString("city_in").trim());
         } catch (SQLException e) {
             e.printStackTrace();
         }

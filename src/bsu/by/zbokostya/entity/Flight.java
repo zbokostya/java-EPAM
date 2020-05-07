@@ -12,6 +12,12 @@ public class Flight {
     public Flight() {
     }
 
+    public Flight(Plane plane, Route route, Date date) {
+        this.plane = plane;
+        this.route = route;
+        this.date = date;
+    }
+
     public Plane getPlane() {
         return plane;
     }

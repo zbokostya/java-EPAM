@@ -28,7 +28,8 @@ public class RouteService extends Service<Route> {
         try {
 
             if (!(isEntityExist(entity))) {
-                routeDao.create(entity);
+                entity.setId(routeDao.create(entity));
+                if(entity.getId() == 0 ) throw new ServiceException("route id not created");
             } else {
                 throw new ServiceException("such route already exist");
 
@@ -37,6 +38,7 @@ public class RouteService extends Service<Route> {
             log.error(e.getMessage());
         }
     }
+
 
     @Override
     public void update(Route entity) {

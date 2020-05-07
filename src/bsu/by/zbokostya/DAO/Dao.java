@@ -24,7 +24,7 @@ public abstract class Dao<E> {
     {
         try {
             Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://localhost:54320/postgres";
+            String url = "jdbc:postgresql://localhost:54320/epam";
             Properties properties = new Properties();
             properties.setProperty("user", "zbokostya");
             properties.setProperty("password", "123");
@@ -45,15 +45,20 @@ public abstract class Dao<E> {
         this.data = new ArrayList<E>();
     }
 
-    public void create(E e) {
+    public int create(E e) { //return last inserted id
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement(insertSql);
+            preparedStatement = connection.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS);
+
             preparedStatement = prepareInsert(preparedStatement, e);
             preparedStatement.executeUpdate();
+            ResultSet cnt = preparedStatement.getGeneratedKeys();
+            cnt.next();
+            return cnt.getInt(1);
         } catch (SQLException ex) {
             log.error(ex.getMessage());
         }
+        return 0;
     }
 
     public void delete(String id) {
@@ -109,7 +114,19 @@ public abstract class Dao<E> {
         }
     }
 
-    ;
+    public E readById(int id) {
+        sql = "select * from " + tableName + " WHERE id = " + id;
+        try {
+            sqlResponse = statement.executeQuery(sql);
+            if(sqlResponse.next()) {
+                return makeEntity(sqlResponse);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public abstract String makeUpdateQuery(E e);
 

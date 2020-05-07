@@ -13,8 +13,7 @@ public class Plane {
     public Plane() {
     }
 
-    public Plane(int id, String name, int seats, String serialNumber, int companyId) {
-        this.id = id;
+    public Plane(String name, int seats, String serialNumber, int companyId) {
         this.name = name;
         this.seats = seats;
         this.serialNumber = serialNumber;

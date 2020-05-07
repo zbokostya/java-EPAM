@@ -12,12 +12,11 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(Flight flight, Plane plane, int seat, int cost, int id) {
+    public Ticket(Flight flight, Plane plane, int seat, int cost) {
         this.flight = flight;
         this.plane = plane;
         this.seat = seat;
         this.cost = cost;
-        this.id = id;
     }
 
     public Flight getFlight() {
