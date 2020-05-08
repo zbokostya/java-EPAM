@@ -16,7 +16,7 @@ public class TicketDao extends Dao<Ticket> {
         setTableName("ticket");
         setInsertSql("INSERT INTO ticket " +
                 "(cost, seat, flight_id, plane_id)" +
-                "VALUES(?,?,?,?)");
+                "VALUES(?,?,?,?)" + " RETURNING id");
         setDeleteSql("DELETE FROM ticket WHERE ticket_id = ");
     }
 
@@ -50,11 +50,11 @@ public class TicketDao extends Dao<Ticket> {
     public Ticket makeEntity(ResultSet sqlResponse) {
         Ticket ticket = new Ticket();
         try {
-            ticket.setId(sqlResponse.getInt("ticket_id"));
-            ticket.setCost(sqlResponse.getInt("ticket_cost"));
-            ticket.setSeat(sqlResponse.getInt("ticket_seat"));
-            ticket.setFlight(flightDao.makeEntity(statement.executeQuery("select * from flight WHERE id = " + sqlResponse.getInt("ticket_flight_id"))));
-            ticket.setPlane(planeDao.makeEntity(statement.executeQuery("select * from plane WHERE id = " + sqlResponse.getInt("ticket_plane_id"))));
+            ticket.setId(sqlResponse.getInt("id"));
+            ticket.setCost(sqlResponse.getInt("cost"));
+            ticket.setSeat(sqlResponse.getInt("seat"));
+            ticket.setFlight(flightDao.makeEntity(statement.executeQuery("select * from flight WHERE id = " + sqlResponse.getInt("flight_id"))));
+            ticket.setPlane(planeDao.makeEntity(statement.executeQuery("select * from plane WHERE id = " + sqlResponse.getInt("plane_id"))));
 
         } catch (SQLException e) {
             e.printStackTrace();

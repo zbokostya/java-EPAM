@@ -11,7 +11,7 @@ public class PlaneDao extends Dao<Plane> {
         setTableName("plane");
         setInsertSql("INSERT INTO plane " +
                 "(name, seat_number, company_id, serial_number)" +
-                "VALUES(?,?,?,?)");
+                "VALUES(?,?,?,?)" + " RETURNING id");
         setDeleteSql("DELETE FROM plane WHERE plane_id = ");
     }
 
@@ -45,11 +45,11 @@ public class PlaneDao extends Dao<Plane> {
     public Plane makeEntity(ResultSet sqlResponse) {
         Plane plane = new Plane();
         try {
-            plane.setId(sqlResponse.getInt("plane_id"));
-            plane.setName(sqlResponse.getString("plane_name").trim());
-            plane.setSeats(sqlResponse.getInt("plane_seat_number"));
-            plane.setCompanyId(sqlResponse.getInt("plane_company_id"));
-            plane.setSerialNumber(sqlResponse.getString("plane_serial_number").trim());
+            plane.setId(sqlResponse.getInt("id"));
+            plane.setName(sqlResponse.getString("name"));
+            plane.setSeats(sqlResponse.getInt("seat_number"));
+            plane.setCompanyId(sqlResponse.getInt("company_id"));
+            plane.setSerialNumber(sqlResponse.getString("serial_number"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

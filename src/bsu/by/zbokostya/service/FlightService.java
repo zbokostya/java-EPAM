@@ -28,7 +28,8 @@ public class FlightService extends Service<Flight> {
         try {
 
             if (!(isEntityExist(entity))) {
-                flightDao.create(entity);
+                entity.setId(flightDao.create(entity));
+                if(entity.getId() == 0 ) throw new ServiceException("flight id not created");
             } else {
                 throw new ServiceException("such flight already exist");
 

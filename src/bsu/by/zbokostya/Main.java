@@ -24,20 +24,25 @@ public class Main {
         TicketService ticketService = new TicketService();
 
         Route route = new Route("Minsk", "Moscow");
-        Plane plane = new Plane("Plane1", 30, "123-ab", 1);
+        Plane plane = new Plane("Plane1", 30, "127-lb", 1);
         Flight flight = new Flight(plane, route, new Date());
         Ticket ticket = new Ticket(flight, plane, 5, 30);
 
         routeService.create(route);
-        System.out.println(route.getId());
-        //flightService.create(flight);
-        //planeService.create(plane);
-        //ticketService.create(ticket);
-        //routeService.read();
-        //System.out.println(routeService.getData());
+        planeService.create(plane);
+        flightService.create(flight);
+        ticketService.create(ticket);
 
-        //routeService.read();
-        //routeService.update(route);
-        //System.out.println(routeService.getData());
+        routeService.read();
+        System.out.println(routeService.getData());
+
+        planeService.read();
+        System.out.println(planeService.getData());
+
+        flightService.read();
+        System.out.println(flightService.getData());
+
+        ticketService.read();
+        System.out.println(ticketService.getData());
     }
 }

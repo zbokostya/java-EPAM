@@ -28,7 +28,8 @@ public class PlaneService extends Service<Plane>{
         try {
 
             if (!(isEntityExist(entity))) {
-                planeDao.create(entity);
+                entity.setId(planeDao.create(entity));
+                if(entity.getId() == 0 ) throw new ServiceException("plane id not created");
             } else {
                 throw  new ServiceException("such plane already exist");
 

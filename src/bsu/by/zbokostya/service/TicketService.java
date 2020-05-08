@@ -29,7 +29,8 @@ public class TicketService extends Service<Ticket> {
         try {
 
             if (!(isEntityExist(entity))) {
-                ticketDao.create(entity);
+                entity.setId(ticketDao.create(entity));
+                if(entity.getId() == 0 ) throw new ServiceException("route id not created");
             } else {
                 throw new ServiceException("such ticket already exist");
 
